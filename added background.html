@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Website</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: #334155;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #64748b;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .nav-link {
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            color: #64748b;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: #10b981;
+        }
+        
+        /* Sections */
+        section {
+            padding: 4rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1e293b;
+        }
+        
+        /* Background Patterns */
+        #home {
+            background: linear-gradient(135deg, rgba(241, 245, 249, 0.9) 0%, rgba(226, 232, 240, 0.9) 100%), 
+                        url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1000') center/cover no-repeat;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        #about {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(241, 245, 249, 0.9) 100%), 
+                        url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+        
+        #services {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(5, 150, 105, 0.05) 100%), 
+                        url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+        
+        #contact {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(241, 245, 249, 0.95) 100%), 
+                        url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1000') center/cover no-repeat;
+        }
+        
+        /* Home Section */
+        .home-content {
+            margin-bottom: 2rem;
+            color: #1e293b;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #10b981;
+        }
+        
+        /* About Section */
+        .about-content {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+        }
+        
+        .team {
+            margin-top: 2rem;
+        }
+        
+        .team-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #10b981;
+        }
+        
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .team-member {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .team-member:hover {
+            transform: scale(1.05);
+        }
+        
+        .member-photo {
+            width: 8rem;
+            height: 8rem;
+            background-color: #e2e8f0;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .member-name {
+            font-size: 1.125rem;
+            font-weight: 500;
+        }
+        
+        .member-role {
+            color: #64748b;
+        }
+        
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .service-card {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(5px);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #10b981;
+        }
+        
+        .service-price {
+            color: #10b981;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .contact-form {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+        }
+        
+        .form-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #10b981;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #334155;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 6rem;
+        }
+        
+        .submit-btn {
+            background-color: #10b981;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #059669;
+        }
+        
+        .contact-info {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+        }
+        
+        .info-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #10b981;
+        }
+        
+        .info-item {
+            margin-bottom: 1rem;
+        }
+        
+        .info-subtitle {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            section {
+                padding: 2rem 1rem;
+            }
+            
+            #home {
+                min-height: auto;
+                padding-top: 6rem;
+                padding-bottom: 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-content">
+                <a href="#" class="logo">AdvancedSite</a>
+                <div class="nav-links">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home">
+        <div class="section-container">
+            <h1 class="section-title">Welcome to Our Website</h1>
+            <div class="home-content">
+                <p>This is the home page of our advanced website. Explore our content using the navigation above.</p>
+            </div>
+            <div class="features">
+                <div class="feature-card">
+                    <h3 class="feature-title">Feature One</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">Feature Two</h3>
+                    <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">Feature Three</h3>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-container">
+            <h1 class="section-title">About Us</h1>
+            <div class="about-content">
+                <p>We are a team of passionate professionals dedicated to creating amazing web experiences.</p>
+                <p>Our mission is to deliver high-quality solutions that meet our clients' needs.</p>
+                <div class="team">
+                    <h2 class="team-title">Our Team</h2>
+                    <div class="team-members">
+                        <div class="team-member">
+                            <div class="member-photo"></div>
+                            <h3 class="member-name">John Doe</h3>
+                            <p class="member-role">CEO & Founder</p>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-photo" style="background-image: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1000')"></div>
+                            <h3 class="member-name">Jane Smith</h3>
+                            <p class="member-role">Lead Developer</p>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-photo" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000')"></div>
+                            <h3 class="member-name">Mike Johnson</h3>
+                            <p class="member-role">Designer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="section-container">
+            <h1 class="section-title">Our Services</h1>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3 class="service-title">Web Development</h3>
+                    <p>Custom web applications built with modern technologies.</p>
+                    <p class="service-price">$999+</p>
+                </div>
+                <div class="service-card">
+                    <h3 class="service-title">Mobile Development</h3>
+                    <p>Cross-platform mobile apps for iOS and Android.</p>
+                    <p class="service-price">$1,499+</p>
+                </div>
+                <div class="service-card">
+                    <h3 class="service-title">UI/UX Design</h3>
+                    <p>Beautiful and intuitive user interfaces.</p>
+                    <p class="service-price">$799+</p>
+                </div>
+                <div class="service-card">
+                    <h3 class="service-title">SEO Optimization</h3>
+                    <p>Improve your website's search engine rankings.</p>
+                    <p class="service-price">$499+</p>
+                </div>
+                <div class="service-card">
+                    <h3 class="service-title">Content Creation</h3>
+                    <p>High-quality content for your digital presence.</p>
+                    <p class="service-price">$299+</p>
+                </div>
+                <div class="service-card">
+                    <h3 class="service-title">Digital Marketing</h3>
+                    <p>Comprehensive marketing strategies for growth.</p>
+                    <p class="service-price">$1,199+</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-container">
+            <h1 class="section-title">Contact Us</h1>
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h2 class="form-title">Get in Touch</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" placeholder="Your Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="Your Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" placeholder="Your Message"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h2 class="info-title">Our Information</h2>
+                    <div class="info-item">
+                        <h3 class="info-subtitle">Address</h3>
+                        <p>123 Business Street, Suite 100<br>New York, NY 10001</p>
+                    </div>
+                    <div class="info-item">
+                        <h3 class="info-subtitle">Phone</h3>
+                        <p>(123) 456-7890</p>
+                    </div>
+                    <div class="info-item">
+                        <h3 class="info-subtitle">Email</h3>
+                        <p>info@advancedsite.com</p>
+                    </div>
+                    <div class="info-item">
+                        <h3 class="info-subtitle">Hours</h3>
+                        <p>Monday - Friday: 9am - 5pm<br>Saturday - Sunday: Closed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form submission handling
+        const form = document.querySelector('form');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will get back to you soon.');
+                form.reset();
+            });
+        }
+    </script>
+</body>
+</html>
